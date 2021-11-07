@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: gainsboro
+}
+
+
+
+header{ 
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgba(29,188,253,1) 50%, rgba(252,176,69,1) 100%);
+    color: wheat;
+    padding: 30px;
+    
+
+}
+
+#container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 10px;
+   
+}
+
+input {
+    width: 85%;
+    margin: auto;
+    border: none;
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 5px
+}
+
+.addButton{
+    width: 15%;
+    padding: 11px;
+    margin: auto;
+    margin-left: 10px;
+    background: gainsboro;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.subButton{
+    width: 15%;
+    padding: 11px;
+    margin: auto;
+    background: gainsboro;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: normal;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.addButton:hover {
+    background-color: rgb(131,58,180);
+    color: gainsboro;
+}
+
+ul li{
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: gainsboro;
+    font-size: 14px;
+    transition: .2s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-selct: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul li:nth-child(odd) {
+    background: #b6b6b6;
+}
+
+ul li:hover {
+    background: #f5eca9;
+    color: black;
+}
+
+.checked::before {
+    content: "";
+    position: absolute;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: rgb(122, 121, 121);
+}
+.fas {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+.fas:hover {
+    color: rgba(252,176,69,1);
+    
+}
+
+.subList {
+    margin-top: 5px;
+}
+
+ol {
+    cursor: pointer;
+    padding-left: 20px;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: gainsboro;
+    font-size: 14px;
+    transition: .2s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-selct: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ol:nth-child(odd) {
+    background: #b6b6b6;
+}
+
