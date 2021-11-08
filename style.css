@@ -16,6 +16,8 @@ header{
     background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgba(29,188,253,1) 50%, rgba(252,176,69,1) 100%);
     color: wheat;
     padding: 30px;
+    margin: 50px;
+    border-radius: 5px;
     
 
 }
@@ -78,7 +80,9 @@ input {
 ul li{
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    margin: 50px;
+    border-radius: 5px;
+    padding: 12px 8px 12px 8px;
     list-style-type: none;
     background: gainsboro;
     font-size: 14px;
@@ -136,6 +140,7 @@ ol {
     cursor: pointer;
     padding-left: 20px;
     padding: 12px 8px 12px 40px;
+    border-radius: 5px;
     list-style-type: none;
     background: gainsboro;
     font-size: 14px;
