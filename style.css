@@ -80,9 +80,9 @@ input {
 ul li{
     cursor: pointer;
     position: relative;
-    margin: 50px;
+    margin: 10px;
     border-radius: 5px;
-    padding: 12px 8px 12px 8px;
+    padding: 10px;
     list-style-type: none;
     background: gainsboro;
     font-size: 14px;
@@ -92,6 +92,10 @@ ul li{
     -moz-user-selct: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+ol li{
+    padding-left: 50px;
 }
 
 ul li:nth-child(odd) {
@@ -120,6 +124,7 @@ ul li:hover {
     text-decoration: line-through;
     color: rgb(122, 121, 121);
 }
+
 .fas {
     position: absolute;
     right: 0;
@@ -138,8 +143,8 @@ ul li:hover {
 
 ol {
     cursor: pointer;
-    padding-left: 20px;
-    padding: 12px 8px 12px 40px;
+    margin-left: 5px;
+    padding: 12px 8px 12px 8px;
     border-radius: 5px;
     list-style-type: none;
     background: gainsboro;

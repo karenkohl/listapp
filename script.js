@@ -1,44 +1,47 @@
-const todoObjectList = []
-let ul = document.querySelector("#myUL")
-let input = document.querySelector("#myInput")
-let li = document.querySelector(".todoItem")
+const ul = document.querySelector("#myUL")
+const input = document.querySelector("#myInput")
+const li = document.querySelector(".todoItem")
+const allItems = JSON.parse(localStorage.getItem('items')) || {}
 
 function add(newItem) {
     if(newItem === ""){
         alert("Oops, looks like there's nothing there!")
-    }else{
-        let listItem = document.createElement("li")
-        let i = document.createElement("i")
-        i.className = "fas fa-trash"
-        i.addEventListener("click", function(e) {
+    } else {
+        const listItem = document.createElement("li")
+        const removeIcon = document.createElement("i")
+        removeIcon.className = "fas fa-trash"
+        removeIcon.addEventListener("click", function(e) {
             listItem.remove(e.target)
             listItem.remove(e.parent)
-            todoObjectList.splice(todoObjectList.findIndex(todos => todos.text === newItem), 1)
-            localStorage.setItem('todos', JSON.stringify(todoObjectList))
+            delete allItems[newItem]
+            localStorage.setItem('items', JSON.stringify(allItems))
             
         })
+
         listItem.textContent = newItem
-        listItem.appendChild(i)
-        //todoObjectList.shift(newItem)
+        listItem.appendChild(removeIcon)
+
         ul.appendChild(listItem) 
         listItem.className = "todoItem"
         input.value = ""
+        
     
+        if (!allItems[newItem]) {
+            allItems[newItem] = { text: newItem, subItems: {} }
+            localStorage.setItem('items', JSON.stringify(allItems))
+        }
 
 
         let ol = document.createElement("ol")
         ol.className = "subList"
         listItem.appendChild(ol)
-    
-        const todoItem = { text: newItem, subtasks: [] }
-        todoObjectList.push(todoItem)
-        localStorage.setItem('todos', JSON.stringify(todoObjectList))
-        createSublistItem(ol, todoItem)
-        
+        createSublistItem(ol, newItem)
+        console.log(allItems)
+        return ol
     }
 }
 
-const createSublistItem = (parent, todoItem) => {
+const createSublistItem = (parent, parentText) => {
     let inputField = document.createElement("input")
     let newButton = document.createElement("span")
     parent.appendChild(newButton)
@@ -47,27 +50,39 @@ const createSublistItem = (parent, todoItem) => {
     parent.appendChild(inputField)
     newButton.addEventListener("click", function(e) {
         e.stopPropagation()
-        let subListItem = document.createElement("li")
-        todoItem.subtasks.push(inputField.value)
-        localStorage.setItem('todos', todoObjectList)
-        subListItem.textContent = inputField.value
-        parent.appendChild(subListItem)
-        subListItem.addEventListener("click", function() {
-            if(subListItem.className !== "checked"){
-                subListItem.className = "checked"
-            }else{
-                subListItem.classList.remove("checked")
-            }
-        })
-        inputField.value = ""
+        addingOL(parent, inputField.value, parentText)
     })
+
+    inputField.value = ""
     
 }
-
 
 
 const addToList = document.querySelector("#add_button").addEventListener("click", function() {
     add(input.value)
 })
 
-console.log(todoObjectList)
+// recreates the todo list from localStorage
+Object.keys(allItems).forEach(key => {
+    const parent = add(allItems[key].text)
+    console.log(allItems[key].subItems)
+    Object.keys(allItems[key].subItems).forEach(subItemKey => {
+        console.log('!!', parent, allItems[key].subItems[subItemKey], key)
+        addingOL(parent, allItems[key].subItems[subItemKey], key)
+    })
+})
+
+function addingOL(parent, textValue, newItem) {
+    let subListItem = document.createElement("li")
+    subListItem.textContent = textValue
+    allItems[newItem].subItems[textValue] = textValue
+    localStorage.setItem('items', JSON.stringify(allItems))
+    parent.appendChild(subListItem)
+    subListItem.addEventListener("click", function() {
+        if(subListItem.className !== "checked"){
+            subListItem.className = "checked"
+        }else{
+            subListItem.classList.remove("checked")
+        }
+    })
+}
